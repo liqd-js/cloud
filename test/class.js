@@ -1,16 +1,28 @@
-const Service = require('../service.js');
+const { Service } = require('../lib/cloud.js');
 
-module.exports = class Classka extends Service
+Service.init([ 'ws://localhost:8080' ]);
+
+const Class1 = module.exports = class Class1 extends Service
 {
-    static id = 'idecko staticke';
+    static id = 'class1';
 
     constructor()
     {
         super();
     }
 
+    get()
+    {
+        return this.service('class2').go();
+    }
+
     go()
     {
-        return this.service( 'test' );
+        setTimeout(() => this.get().then( console.log ), 1000 );
+
+        return 'ja som class1';
     }
 }
+
+const instance = new Class1();
+

@@ -1,0 +1,30 @@
+{
+  "name": "@liqd-js/cloud",
+  "description": "Microservices Framework",
+  "version": "0.1.0",
+  "author": "radixxko",
+  "license": "MIT",
+  "main": "lib/cloud.js",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/liqd-js/cloud.git"
+  },
+  "keywords": [
+    "cloud",
+    "microservices",
+    "liqd-js",
+    "liqd"
+  ],
+  "dependencies": {
+    "@liqd-js/client-jsonrpc": "0.0.3",
+    "@liqd-js/flow": "^1.0.2",
+    "@liqd-js/timed-promise": "^1.0.2",
+    "@liqd-js/websocket": "^1.0.0"
+  }
+}

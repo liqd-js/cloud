@@ -1,9 +1,26 @@
-const classka = require('./class.js');
-const classka2 = require('./class2.js');
+const fs = require('fs');
+const cluster = require('cluster');
 
-const instance = new classka();
-
-for( let i = 0; i < 10; ++i )
+if( cluster.isMaster )
 {
-    instance.service('testik').trulo( 'janko', 'hrasko' ).then( console.log );
+    require('./cloud/broker');
+    
+    for( let node of fs.readdirSync( __dirname + '/cloud/nodes' ))
+    {
+        let worker = cluster.fork();
+
+        worker.on( 'online', () =>
+        {
+            worker.send( node );
+        });
+    }
+}
+else
+{
+    const Node = require('./cloud/node');
+
+    process.on( 'message', node => 
+    {
+        node = new Node( __dirname + '/cloud/nodes/' + node );
+    });
 }
