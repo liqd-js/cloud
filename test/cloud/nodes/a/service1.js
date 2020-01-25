@@ -7,6 +7,17 @@ module.exports = class Service1 extends Service
         super();
 
         console.log( 'Service1 is running' );
+
+        setTimeout(() => 
+        {
+            this.emit( 'foo-event', 'foo', 'bar' );
+        },
+        2000 );
+
+        this.service('service1').on( 'foo-event', ( data ) =>
+        {
+            console.log( 'Service1 handled foo-event', data );
+        });
     }
 
     sum( a, b )

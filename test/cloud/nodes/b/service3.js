@@ -9,6 +9,11 @@ module.exports = class Service3 extends Service
         super();
 
         console.log( 'Service3 is running' );
+
+        this.service('service1').on( 'foo-event', ( data ) =>
+        {
+            console.log( 'Service3 handled foo-event', data );
+        });
     }
 
     sum( a, b )
