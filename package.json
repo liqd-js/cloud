@@ -27,6 +27,8 @@
     "@liqd-js/options": "^1.0.2",
     "@liqd-js/server": "0.0.1",
     "@liqd-js/timed-promise": "^1.0.2",
-    "@liqd-js/websocket": "^1.0.0"
+    "@liqd-js/websocket": "^1.0.0",
+    "liqd-sql": "^1.6.0",
+    "mysql": "^2.18.1"
   }
 }
