@@ -3,14 +3,14 @@
 const Cloud = require('../lib/cloud.js');
 const SQL = require('liqd-sql');
 
-async function test_drive( uid )
+async function drive( uid )
 {
     let data = await Cloud.Resource.Drive( uid );
 
     console.log( data.root );
 }
 
-async function test_sql( uid )
+async function sql( uid )
 {
     let data = await Cloud.Resource.SQL( uid, { type: 'mysql' } );
 
@@ -29,6 +29,8 @@ async function test_sql( uid )
 
         if( query.ok )
         {
+            let table = await DB.query()
+
             console.log( 'SQL test passed', query );
         }
         else { console.log( 'SQL test failed' ); }
@@ -36,5 +38,14 @@ async function test_sql( uid )
     else { console.log( 'DB creating failed' ); }
 }
 
-test_drive( 'test_2' );
-test_sql( 'janko1' );
+async function sql_dump( uid )
+{
+    let sql = await Cloud.Resource.SQL( uid, { type: 'mysql' } );
+
+    console.log( { test:  sql.dump } );
+}
+
+drive( 'test_2' );
+sql( 'janko1' );
+
+sql_dump( 'db0' )
